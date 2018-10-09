@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!--
+  Customize this policy to fit your own app's needs. For more guidance, see:
+      https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+  Some notes:
+      * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+      * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+      * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+          * Enable inline JS: add 'unsafe-inline' to default-src
+  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#2196f3">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <title>My App</title>
+
+  <link rel="stylesheet" href="css/framework7.css">
+  <link rel="stylesheet" href="css/icons.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Views/Tabs container -->
+    <div class="views tabs ios-edges">
+      <!-- Tabbar for switching views-tabs -->
+      <div class="toolbar tabbar-labels toolbar-bottom-md">
+        <div class="toolbar-inner">
+          <a href="#view-home" class="tab-link tab-link-active">
+           <b><span class="tabbar-label">Опросник</span></b>
+          </a>
+         
+        </div>
+      </div>
+      <!-- Your main view/tab, should have "view-main" class. It also has "tab-active" class -->
+      <div id="view-home" class="view view-main tab tab-active">
+        <!-- Page, data-name contains page name which can be used in page callbacks -->
+        <div class="page" data-name="home">
+         
+<!--Опрос на выбор нескольких вариантов-->
+          <div class="block-title">Ваше хобби</div>
+          <div>
+          <div class="list">
+            <ul>
+              <li>
+          <label class="item-checkbox item-content" id="ch1" v-on:click="changeColor1()" v-bind:style="{backgroundColor:computedColor}">
+      <input type="checkbox" name="checkbox" value="Music" />
+      <i class="icon icon-checkbox"></i>
+      <div class="item-inner">
+        <div class="item-title">Music</div>
+      </div>
+    </label>
+              </li>
+              <li>
+                <label class="item-checkbox item-content" id="ch2" v-on:click="changeColor1()" v-bind:style="{backgroundColor:computedColor}">
+                  <input type="checkbox" name="checkbox" value="Movies" />
+                  <i class="icon icon-checkbox"></i>
+                  <div class="item-inner">
+                    <div class="item-title">Movies</div>
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="item-checkbox item-content" id="ch3"v-on:click="changeColor1()" v-bind:style="{backgroundColor:computedColor}">
+                  <input type="checkbox" name="checkbox" value="Food"/>
+                  <i class="icon icon-checkbox"></i>
+                  <div class="item-inner">
+                    <div class="item-title">Food</div>
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="item-checkbox item-content" id="ch4" v-on:click="changeColor1()" v-bind:style="{backgroundColor:computedColor}">
+                  <input type="checkbox" name="checkbox" value="Drinks"/>
+                  <i class="icon icon-checkbox"></i>
+                  <div class="item-inner">
+                    <div class="item-title">Drinks</div>
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </div>  
+          <div id="btn1">
+          <button v-on:click="getVoice" class="col button button-small">Кнопка</button>
+        </div>
+        </div>
+<!--Опрос со своим выбором-->
+<div class="block-title">Введите свой вариант ответа</div>
+        <div class="poll__custom">
+          <div class="list">
+            <ul><li class=""
+              ><div class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-input-wrap">
+                    <input type="text" placeholder="Свой вариант" class="" id="submit" v-on:keyup.enter="submit">
+                    <span class="input-clear-button">
+                    </span>
+                  </div>
+                  </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+<!--Опрос на выбор одного из вариантов-->
+              <div class="block-title">Какое время года сейчас?</div>
+              <div class="list">
+                <ul>
+                  <li>
+                    <label class="item-radio item-content">
+                      <input type="radio" name="radio" value="Books" checked="checked"/>
+                      <i class="icon icon-radio"></i>
+                      <div class="item-inner">
+                        <div class="item-title">Лето </div>
+                      </div>
+                    </label>
+                  </li>
+                  <li>
+                      <label class="item-radio item-content">
+                        <input type="radio" name="radio" value="Books" checked="checked"/>
+                        <i class="icon icon-radio"></i>
+                        <div class="item-inner">
+                          <div class="item-title">Весна </div>
+                        </div>
+                      </label>
+                    </li>
+                  <li>
+                    <label class="item-radio item-content">
+                      <input type="radio" name="radio" value="Movies"/>
+                      <i class="icon icon-radio"></i>
+                      <div class="item-inner">
+                        <div class="item-title">Зима</div>
+                      </div>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="item-radio item-content">
+                      <input type="radio" name="radio" value="Food"/>
+                      <i class="icon icon-radio"></i>
+                      <div class="item-inner">
+                        <div class="item-title">Осень</div>
+                      </div>
+                    </label>
+                  </li>
+                </ul>
+              </div>
+       <!-- Смешанный опрос -->       
+              <div class="block-title">Смешанный опрос</div>
+              <div class="list">
+                <ul>
+                  <li>
+                    <label class="item-radio item-content">
+                      <input type="radio" name="radio" value="Books" checked="checked"/>
+                      <i class="icon icon-radio"></i>
+                      <div class="item-inner">
+                        <div class="item-title">Доща </div>
+                      </div>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="item-radio item-content">
+                      <input type="radio" name="radio" value="Movies"/>
+                      <i class="icon icon-radio"></i>
+                      <div class="item-inner">
+                        <div class="item-title">Никитка</div>
+                      </div>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="item-radio item-content">
+                      <input type="radio" name="radio" value="Food"/>
+                      <i class="icon icon-radio"></i>
+                      <div class="item-inner">
+                        <div class="item-title">Антошка</div>
+                      </div>
+                    </label>
+                  </li>
+                  <li>
+                      <div class="poll__custom">
+                          <div class="list" style="margin: 0 0;">
+                            <ul><li class=""
+                              ><div class="item-content item-input">
+                                <div class="item-inner">
+                                  <div class="item-input-wrap">
+                                    <input type="text" placeholder="Свой вариант" class="" id="submit2" v-on:keyup.enter="submit">
+                                    
+                                    <span class="input-clear-button">
+                                    </span>
+                                  </div>
+                                  </div>
+                                  </div>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>   
+                  </li>
+                </ul>
+                <button v-on:click="getVoice" id="btn2" class="col button button-small button-outlineы">Кнопка</button>
+              </div>
+          <!-- Оценочный опрос-->
+          <div class="slider-pad">
+            <div class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">Slider</div>
+                <div class="item-input-wrap">
+                  <div class="range-slider range-slider-init" data-label="true">
+                    <input type="range" value="0" min="0" max="10" step="1">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- Cordova -->
+  <!--
+  <script src="cordova.js"></script>
+  -->
+  <!-- Framework7 library -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+  <script src="js/framework7.min.js"></script>
+  <!-- App routes -->
+  <script src="js/routes.js"></script>
+  <script src="js/button.js"></script>
+  <script src="js/check.js"></script>
+  <!-- Your custom app scripts -->
+  <script src="js/app.js"></script>
+  <script src="js/index.js"></script>
+ 
+</body>
+</html>
